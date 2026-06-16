@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+<style>
+		
+		body {
+			background-color: #f4f4f4;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			margin: 0;
+			padding: 0;
+			color: #222;
+		}
+
+		
+		.kart {
+			background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url("rej1.png");
+			background-size: cover;
+			background-position: center;
+			padding: 60px 20px;
+			text-align: center;
+		}
+		
+		h1 { 
+			color: #ffffff;
+			font-size: 50px;
+			margin: 0;
+			letter-spacing: 3px;
+			text-transform: uppercase;
+		}
+
+		
+		ul {
+			list-style-type: none;
+			display: flex; 
+			flex-direction: row;
+			align-items: center;
+			font-size: 20px;
+			background-color: #1a1a1a;
+			margin: 0;
+			padding: 0;
+			box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+		}
+
+		ul li {
+			flex: 1;
+			text-align: center;
+			position: relative;
+		}
+		
+		
+		a:link, a:visited {
+			text-decoration: none;
+			color: #cccccc;
+			font-size: 18px;
+			padding: 20px 10px;
+			display: block;
+			transition: all 0.3s ease;
+		}
+
+		a:hover, a:active {
+			background-color: #444444;
+			color: #ffffff;
+		}
+		
+		
+		.dropdown {
+			position: relative;
+		}
+
+		.submenu {
+			display: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			width: 100%;
+			background: #2a2a2a;
+			flex-direction: column;
+			padding: 0;
+			box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+			z-index: 10;
+		}
+
+		.submenu li {
+			text-align: left;
+			border-bottom: 1px solid #333333;
+		}
+
+		.submenu li a {
+			padding: 12px 20px;
+			font-size: 16px;
+		}
+
+		.submenu li a:hover {
+			background-color: #444444;
+			padding-left: 25px;
+		}
+
+		li:hover .submenu {
+			display: flex;
+		}
+
+		
+		.content-container {
+			max-width: 900px;
+			margin: 40px auto;
+			background-color: #ffffff;
+			padding: 40px;
+			border-radius: 8px;
+			box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+			border-left: 5px solid #d35400; 
+			border-right: 5px solid #d35400; 
+			border-top: 5px solid #d35400; 
+			border-bottom: 5px solid #d35400; 
+		}
+
+		.content-container h2 {
+			color: #1a1a1a;
+			font-size: 28px;
+			margin-top: 0;
+			border-bottom: 2px solid #eaeaea;
+			padding-bottom: 10px;
+		}
+
+		.content-container p {
+			font-size: 17px;
+			line-height: 1.7;
+			color: #444444;
+		}
+
+		
+		.projects-title {
+			color: #1a1a1a;
+			font-size: 24px;
+			margin-top: 40px;
+			margin-bottom: 20px;
+			border-bottom: 2px solid #eaeaea;
+			padding-bottom: 10px;
+		}
+
+		.projects-grid {
+			display: flex;
+			flex-direction: column;
+			gap: 30px;
+			margin-top: 20px;
+		}
+
+		.project-box {
+			display: flex;
+			flex-direction: row;
+			background-color: #f9f9f9;
+			border: 1px solid #eef0f1;
+			border-radius: 6px;
+			padding: 20px;
+			align-items: center;
+			gap: 25px;
+			transition: 0.3s ease;
+		}
+
+		.project-box:hover {
+			box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+			background-color: #f5f7f8;
+		}
+
+		.project-img {
+			width: 180px;
+			height: 180px;
+			object-fit: cover;
+			background-color: #ffffff;
+			border: 1px solid #e0e0e0;
+			border-radius: 4px;
+			padding: 3px;
+		}
+
+		
+		.pdf-icon-container {
+			width: 180px;
+			height: 180px;
+			background-color: #fceae8;
+			border: 1px dashed #e74c3c;
+			border-radius: 4px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			color: #c0392b;
+			font-weight: bold;
+			font-size: 14px;
+			text-align: center;
+			gap: 10px;
+		}
+
+		.pdf-icon-container span {
+			font-size: 40px;
+		}
+
+		.project-info {
+			flex: 1;
+		}
+
+		.project-info h3 {
+			margin-top: 0;
+			margin-bottom: 10px;
+			color: #1a1a1a;
+			font-size: 20px;
+		}
+
+		.project-info p {
+			margin: 0;
+			margin-bottom: 12px;
+			font-size: 15px;
+			line-height: 1.5;
+			color: #555555;
+		}
+
+		
+		.view-btn {
+			display: inline-block;
+			background-color: #e74c3c;
+			color: #ffffff !important;
+			padding: 8px 16px;
+			font-size: 14px;
+			border-radius: 4px;
+			text-decoration: none;
+			transition: 0.2s;
+			font-weight: 600;
+		}
+
+		.view-btn:hover {
+			background-color: #c0392b;
+		}
+
+		
+		@media (max-width: 768px) {
+			ul {
+				flex-direction: column;
+			}
+			.project-box {
+				flex-direction: column;
+				text-align: center;
+			}
+			.project-img, .pdf-icon-container {
+				width: 100%;
+				max-width: 220px;
+				height: 150px;
+			}
+		}
+</style>
+</head>
+<body>
+
+<div class="kart">
+	<h1>Анимационна режисура</h1>
+</div>
+
+<nav>
+	<ul>
+		<li><a href="index.html">Начало</a></li>
+		<li class="dropdown"> 
+			<a href="#home">Специалности</a>  
+			<ul class="submenu"> 
+				<li><a href="kino2.html">Кино</a></li>
+				<li><a href="oper.html">Операторство</a></li>
+				<li><a href="foto.html">Фотография</a></li>
+				<li><a href="mult.html">Мултимедийни технологии</a></li>
+				<li><a href="pechat.html">Предпечатна подготовка</a></li>
+				<li><a href="rej.html">Анимационна режисура</a></li>
+				<li><a href="komp_an.html">Компютърна анимация</a></li>
+			</ul> 
+		</li> 
+		<li><a href="kontakt.html">Контакти</a></li>
+		<li><a href="za_men2.html">За мен</a></li>
+	</ul>
+</nav>
+
+<div class="content-container">
+	<h2>Вдъхване на живот и управление на въображението</h2>
+	<p>
+		Анимационната режисура е изкуството да контролираш всеки детайл в един изцяло измислен свят. За разлика от игралното кино, тук режисьорът не просто заснема реалността, а я създава парче по парче – от белия лист хартия или празния дигитален работен плот до финалното движение и озвучаване на героите.
+	</p>
+	<p>
+		Като ученик в 11 клас, в тази специалност развивам умения за създаване на синопсиси, писане на режисьорски сценарии, сториборд (разкадровка) и изграждане на персонажи. Анимационната режисура ми позволява да превърна най-смелите си идеи в движещи се истории, като комбинирам драматургия, визуален стил и тайминг.
+	</p>
+
+	<h2 class="projects-title">Моите проекти и разработки</h2>
+	
+	<div class="projects-grid">
+		
+		<div class="project-box">
+			<div class="pdf-icon-container">
+				<span>📄</span>
+				PDF ДОКУМЕНТ
+			</div>
+			<div class="project-info">
+				<h3>Проект 1: Сценарий и Анотация на късометражен филм „Барон“</h3>
+				<p>
+					Официална писмена разработка на анимационен проект. Включва пълна анотация и подробен синопсис, проследяващи приключенията на момчето Барон и неговия приятел Стю на магически остров в борбата им срещу Сянката. Творбата изследва темата за превъзмогването на вътрешния страх.
+				</p>
+				<a href="Baron.pdf" target="_blank" class="view-btn">Преглед на сценария (PDF)</a>
+			</div>
+		</div>
+
+		<div class="project-box">
+			<img src="Screenshot 2026-06-09 180320.png" alt="Разработка на среда и нива" class="project-img">
+			<div class="project-info">
+				<h3>Сториборд за бъдеща анимация</h3>
+				<p>
+					
+				</p>
+			</div>
+		</div>
+
+		<div class="project-box">
+			<img src="Screenshot 2026-06-09 180334.png" alt="Движение и механика на персонажа" class="project-img">
+			<div class="project-info">
+				<h3>Междинна част на сториборда</h3>
+				<p>
+					
+				</p>
+			</div>
+		</div>
+
+		<div class="project-box">
+			<img src="Screenshot 2026-06-09 180358.png" alt="Композиция и пространствени тестове" class="project-img">
+			<div class="project-info">
+				<h3>Финална част от сториборда</h3>
+				<p>
+					
+				</p>
+			</div>
+		</div>
+
+	</div>
+</div>
+     <footer>
+					 Изработил: Валентин Димитров. Всички Права запазени ©, 2026 г. 
+								
+			</footer>
+
+</body>
+</html>

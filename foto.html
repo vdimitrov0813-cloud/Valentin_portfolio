@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+<style>
+		
+		body {
+			background-color: #f4f4f4;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			margin: 0;
+			padding: 0;
+			color: #222;
+		}
+
+		
+		.kart {
+			background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url("photograhy1.png");
+			background-size: cover;
+			background-position: center 40%;
+			padding: 60px 20px;
+			text-align: center;
+		}
+		
+		h1 { 
+			color: #ffffff;
+			font-size: 50px;
+			margin: 0;
+			letter-spacing: 3px;
+			text-transform: uppercase;
+		}
+
+		
+		ul {
+			list-style-type: none;
+			display: flex; 
+			flex-direction: row;
+			align-items: center;
+			font-size: 20px;
+			background-color: #1a1a1a;
+			margin: 0;
+			padding: 0;
+			box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+		}
+
+		ul li {
+			flex: 1;
+			text-align: center;
+			position: relative;
+		}
+		
+		
+		a:link, a:visited {
+			text-decoration: none;
+			color: #cccccc;
+			font-size: 18px;
+			padding: 20px 10px;
+			display: block;
+			transition: all 0.3s ease;
+		}
+
+		a:hover, a:active {
+			background-color: #444444;
+			color: #ffffff;
+		}
+		
+		
+		.dropdown {
+			position: relative;
+		}
+
+		.submenu {
+			display: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			width: 100%;
+			background: #2a2a2a;
+			flex-direction: column;
+			padding: 0;
+			box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+			z-index: 10;
+		}
+
+		.submenu li {
+			text-align: left;
+			border-bottom: 1px solid #333333;
+		}
+
+		.submenu li a {
+			padding: 12px 20px;
+			font-size: 16px;
+		}
+
+		.submenu li a:hover {
+			background-color: #444444;
+			padding-left: 25px;
+		}
+
+		li:hover .submenu {
+			display: flex;
+		}
+
+		
+		.content-container {
+			max-width: 950px;
+			margin: 40px auto;
+			background-color: #ffffff;
+			padding: 40px;
+			border-radius: 8px;
+			box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+			border-left: 5px solid #7f8c8d; 
+            border-right: 5px solid #7f8c8d;
+            border-top: 5px solid #7f8c8d;
+            border-bottom: 5px solid #7f8c8d;
+		}
+
+		.content-container h2 {
+			color: #1a1a1a;
+			font-size: 28px;
+			margin-top: 0;
+			border-bottom: 2px solid #eaeaea;
+			padding-bottom: 10px;
+		}
+
+		.content-container p {
+			font-size: 17px;
+			line-height: 1.7;
+			color: #444444;
+		}
+
+		
+		.projects-title {
+			color: #1a1a1a;
+			font-size: 24px;
+			margin-top: 40px;
+			margin-bottom: 20px;
+			border-bottom: 2px solid #eaeaea;
+			padding-bottom: 10px;
+		}
+
+		.photo-grid {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 30px;
+			margin-top: 25px;
+		}
+
+		.photo-card {
+			background-color: #fafafa;
+			border: 1px solid #e0e0e0;
+			border-radius: 8px;
+			overflow: hidden;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+
+		.photo-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+		}
+
+		.photo-img {
+			width: 100%;
+			height: 320px;
+			object-fit: cover;
+			background-color: #eee;
+			border-bottom: 1px solid #e0e0e0;
+		}
+
+		.photo-meta {
+			padding: 20px;
+		}
+
+		.photo-meta h3 {
+			margin: 0 0 10px 0;
+			color: #1a1a1a;
+			font-size: 19px;
+		}
+
+		.photo-meta .photo-desc {
+			font-size: 14px;
+			line-height: 1.5;
+			color: #555555;
+			margin: 0 0 15px 0;
+		}
+
+		
+		.exif-box {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 60px;
+			background-color: #f0f2f3;
+			padding: 10px;
+			border-radius: 4px;
+			border-left: 3px solid #7f8c8d;
+            border-right: 3px solid #7f8c8d;
+            border-top: 3px solid #7f8c8d;
+            border-bottom: 3px solid #7f8c8d;
+		}
+
+		.exif-item {
+			font-size: 12px;
+			color: #666;
+			font-family: monospace;
+			background: #ffffff;
+			padding: 3px 6px;
+			border-radius: 3px;
+			border: 1px solid #e0e0e0;
+		}
+
+		
+		@media (max-width: 768px) {
+			ul {
+				flex-direction: column;
+			}
+			.photo-grid {
+				grid-template-columns: 1fr;
+			}
+			.photo-img {
+				height: 250px;
+			}
+		}
+</style>
+</head>
+<body>
+
+<div class="kart">
+	<h1>Фотография</h1>
+</div>
+
+<nav>
+	<ul>
+		<li><a href="index.html">Начало</a></li>
+		<li class="dropdown"> 
+			<a href="#home">Специалности</a>  
+			<ul class="submenu"> 
+				<li><a href="kino2.html">Кино</a></li>
+				<li><a href="oper.html">Операторство</a></li>
+				<li><a href="foto.html">Фотография</a></li>
+				<li><a href="mult.html">Мултимедийни технологии</a></li>
+				<li><a href="pechat.html">Предпечатна подготовка</a></li>
+				<li><a href="rej.html">Анимационна режисура</a></li>
+				<li><a href="komp_an.html">Компютърна анимация</a></li>
+			</ul> 
+		</li> 
+		<li><a href="kontakt.html">Контакти</a></li>
+		<li><a href="za_men2.html">За мен</a></li>
+	</ul>
+</nav>
+
+<div class="content-container">
+	<h2>Изкуството да спираш времето</h2>
+	<p>
+		Фотографията за мен не е просто натискане на бутона на камерата, а начин на мислене и улавяне на света около нас. В рамките на обучението ми в 11 клас, аз активно изследвам как един-единствен кадър може да разкаже цяла история, да събуди емоция и да съхрани даден момент завинаги.
+	</p>
+	<p>
+		Фокусирам се върху изучаването на правилата за златната пропорция, работата с естествена и изкуствена светлина, както и последващата дигитална обработка на кадрите. Смятам, че фотографията е перфектният мост между реалността и моето лично творческо виждане.
+	</p>
+
+	<h2 class="projects-title">Мои авторски фотографии</h2>
+	
+	<div class="photo-grid">
+		
+		<div class="photo-card">
+			<img src="449.jpg" alt="Фотография 449" class="photo-img">
+			<div class="photo-meta">
+				<h3>Творба №1: Пясъчен остров</h3>
+				<p class="photo-desc">
+					
+				</p>
+				<div class="exif-box">
+					<div class="exif-item"> ISO 100</div>
+					<div class="exif-item"> 1/125s</div>
+					<div class="exif-item"> f/4.0</div>
+					<div class="exif-item"> 35mm</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="photo-card">
+			<img src="524.jpg" alt="Фотография 524" class="photo-img">
+			<div class="photo-meta">
+				<h3>Творба №2: Сутрешни вълни</h3>
+				<p class="photo-desc">
+					
+				</p>
+				<div class="exif-box">
+					<div class="exif-item">ISO 200</div>
+					<div class="exif-item"> 1/250s</div>
+					<div class="exif-item"> f/2.8</div>
+					<div class="exif-item"> 50mm</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="photo-card">
+			<img src="525.jpg" alt="Фотография 525" class="photo-img">
+			<div class="photo-meta">
+				<h3>Творба №3: Нощна алея</h3>
+				<p class="photo-desc">
+					
+				</p>
+				<div class="exif-box">
+					<div class="exif-item"> ISO 400</div>
+					<div class="exif-item"> 1/60s</div>
+					<div class="exif-item"> f/5.6</div>
+					<div class="exif-item"> 85mm</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="photo-card">
+			<img src="526.jpg" alt="Фотография 526" class="photo-img">
+			<div class="photo-meta">
+				<h3>Творба №4: Булевард</h3>
+				<p class="photo-desc">
+					
+				</p>
+				<div class="exif-box">
+					<div class="exif-item"> ISO 100</div>
+					<div class="exif-item"> 1/160s</div>
+					<div class="exif-item"> f/8.0</div>
+					<div class="exif-item"> 60mm</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+     <footer>
+					 Изработил: Валентин Димитров. Всички Права запазени ©, 2026 г. 
+								
+			</footer>
+
+</body>
+</html>
